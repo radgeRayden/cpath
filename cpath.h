@@ -97,12 +97,14 @@ extern "C" {
 #define CPATH_UNICODE
 #endif
 
-#ifdef _MSC_VER
-#define _CPATH_FUNC_ static __inline
-#elif !defined __STDC_VERSION__ || __STDC_VERSION__ < 199901L
-#define _CPATH_FUNC_ static __inline__
-#else
-#define _CPATH_FUNC_ static inline
+#ifndef _CPATH_FUNC_
+    #ifdef _MSC_VER
+    #define _CPATH_FUNC_ static __inline
+    #elif !defined __STDC_VERSION__ || __STDC_VERSION__ < 199901L
+    #define _CPATH_FUNC_ static __inline__
+    #else
+    #define _CPATH_FUNC_ static inline
+    #endif
 #endif
 
 /* == #includes == */
